@@ -8,15 +8,15 @@ This SDK designed for web document management applications. With just a few line
 in angular you can use same as below code :
 
 1- first make ScannedServcieResponse model
-```angular
+`angular
 export class ScannedServcieResponse {
   IsSuccess: boolean;
   Message: string;
   result: any[];
 }
-```
+`
 2- Call scanner service and deserializing json to ScannedServcieResponse model.
-```angular
+`angular
 imageScanClick(): void {
     this.isLoading = true;
     this.notif.info('در حال ارتباط با اسکنر...');
@@ -44,4 +44,4 @@ imageScanClick(): void {
       }
     });
   }
-  ```
+  `
