@@ -68,4 +68,4 @@ Please note that you should replace the endpoint URL (http://localhost:6565) wit
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/rhazizi/scanner_in_webApplications/blob/main/LICENSE).
