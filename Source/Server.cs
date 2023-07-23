@@ -1,23 +1,22 @@
-﻿using Newtonsoft.Json;
-using Scanner.Service;
-using Scanner.Service.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Newtonsoft.Json;
+using Scanner.Service;
 
 namespace Scanner.Server
 {
     class Server
     {
         public Scanner _Scanner;
-        public bool _Running = false;
+        public bool _Running;
         private readonly int _Timeout = 1000;
         private Socket _ServerSocket;
         public Server(Scanner scanner)
         {
-            this._Scanner = scanner;
+            _Scanner = scanner;
         }
 
         public bool Start(IPAddress ipAddress, int port, int maxNOfCon)
@@ -77,11 +76,11 @@ namespace Scanner.Server
             var buffer = new byte[10240];
             int receivedBCount = clientSocket.Receive(buffer);
             var request = Encoding.UTF8.GetString(buffer, 0, receivedBCount);
-            string strReceived = request.ToString();
+            string strReceived = request;
             string httpMethod = strReceived.Substring(0, strReceived.IndexOf(" "));
             if (httpMethod.Equals("POST"))
             {
-                result = _Scanner._StartListner();
+                result = _Scanner._StartListener();
                 SendString(clientSocket, result);
             }
             else if (httpMethod.Equals("GET"))
@@ -122,7 +121,7 @@ namespace Scanner.Server
                                     "HTTP/1.1 " + responseCode + "\r\n"
                                   + "Access-Control-Allow-Origin:* \r\n"
                                   + "Server: Scanner Service\r\n"
-                                  + "Content-Length: " + bContent.Length.ToString() + "\r\n"
+                                  + "Content-Length: " + bContent.Length + "\r\n"
                                   + "Connection: close\r\n"
                                   + "Content-Type: " + contentType + "\r\n\r\n");
                 clientSocket.Send(bHeader);

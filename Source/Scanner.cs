@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -14,7 +15,7 @@ namespace Scanner.Server
 {
     public class Scanner : Form
     {
-        Server server = null;
+        Server server;
         public Twain _twain;
         private Button selectSource;
         ScanSettings _settings;
@@ -23,7 +24,7 @@ namespace Scanner.Server
         private Button btstop;
         private Button btstart;
         public List<byte[]> _ResultScan = new List<byte[]>();
-        private System.ComponentModel.IContainer components;
+        private IContainer components;
         private NumericUpDown NQuality;
         private CheckBox imgcrop;
         private Label label3;
@@ -39,111 +40,111 @@ namespace Scanner.Server
         private static readonly AreaSettings AreaSettings = new AreaSettings(Units.Centimeters, 0.1f, 5.7f, 0.1F + 2.6f, 5.7f + 2.6f);
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Scanner));
-            this.selectSource = new System.Windows.Forms.Button();
-            this.useUICheckBox = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btstop = new System.Windows.Forms.Button();
-            this.btstart = new System.Windows.Forms.Button();
-            this.NQuality = new System.Windows.Forms.NumericUpDown();
-            this.imgcrop = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.NDPI = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.NHight = new System.Windows.Forms.NumericUpDown();
-            this.NWidth = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.NQuality)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NDPI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NHight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NWidth)).BeginInit();
-            this.SuspendLayout();
+            components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Scanner));
+            selectSource = new Button();
+            useUICheckBox = new CheckBox();
+            label2 = new Label();
+            btstop = new Button();
+            btstart = new Button();
+            NQuality = new NumericUpDown();
+            imgcrop = new CheckBox();
+            label3 = new Label();
+            groupBox1 = new GroupBox();
+            label6 = new Label();
+            NDPI = new NumericUpDown();
+            label5 = new Label();
+            label4 = new Label();
+            NHight = new NumericUpDown();
+            NWidth = new NumericUpDown();
+            label1 = new Label();
+            trayIcon = new NotifyIcon(components);
+            ((ISupportInitialize)(NQuality)).BeginInit();
+            groupBox1.SuspendLayout();
+            ((ISupportInitialize)(NDPI)).BeginInit();
+            ((ISupportInitialize)(NHight)).BeginInit();
+            ((ISupportInitialize)(NWidth)).BeginInit();
+            SuspendLayout();
             // 
             // selectSource
             // 
-            this.selectSource.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.selectSource.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.selectSource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.selectSource.Location = new System.Drawing.Point(40, 220);
-            this.selectSource.Name = "selectSource";
-            this.selectSource.Size = new System.Drawing.Size(207, 28);
-            this.selectSource.TabIndex = 2;
-            this.selectSource.Text = "انتخاب اسکنر پیش فرض";
-            this.selectSource.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.selectSource.UseVisualStyleBackColor = false;
-            this.selectSource.Click += new System.EventHandler(this.SelectSource_Click_1);
+            selectSource.BackColor = SystemColors.GradientInactiveCaption;
+            selectSource.Font = new Font("Tahoma", 9F);
+            selectSource.ImageAlign = ContentAlignment.MiddleRight;
+            selectSource.Location = new Point(40, 220);
+            selectSource.Name = "selectSource";
+            selectSource.Size = new Size(207, 28);
+            selectSource.TabIndex = 2;
+            selectSource.Text = "انتخاب اسکنر پیش فرض";
+            selectSource.TextAlign = ContentAlignment.TopCenter;
+            selectSource.UseVisualStyleBackColor = false;
+            selectSource.Click += SelectSource_Click_1;
             // 
             // useUICheckBox
             // 
-            this.useUICheckBox.AutoSize = true;
-            this.useUICheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.useUICheckBox.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.useUICheckBox.ForeColor = System.Drawing.Color.Black;
-            this.useUICheckBox.Location = new System.Drawing.Point(119, 120);
-            this.useUICheckBox.Name = "useUICheckBox";
-            this.useUICheckBox.Size = new System.Drawing.Size(137, 18);
-            this.useUICheckBox.TabIndex = 5;
-            this.useUICheckBox.Text = "نمایش تنظیمات اسکنر";
-            this.useUICheckBox.UseVisualStyleBackColor = false;
+            useUICheckBox.AutoSize = true;
+            useUICheckBox.BackColor = Color.Transparent;
+            useUICheckBox.Font = new Font("Tahoma", 9F);
+            useUICheckBox.ForeColor = Color.Black;
+            useUICheckBox.Location = new Point(119, 120);
+            useUICheckBox.Name = "useUICheckBox";
+            useUICheckBox.Size = new Size(137, 18);
+            useUICheckBox.TabIndex = 5;
+            useUICheckBox.Text = "نمایش تنظیمات اسکنر";
+            useUICheckBox.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Honeydew;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "سرویس استفاده از اسکنر در وب";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label2.BackColor = Color.Honeydew;
+            label2.BorderStyle = BorderStyle.FixedSingle;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Tahoma", 9F);
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(284, 25);
+            label2.TabIndex = 7;
+            label2.Text = "سرویس استفاده از اسکنر در وب";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btstop
             // 
-            this.btstop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btstop.Enabled = false;
-            this.btstop.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btstop.ForeColor = System.Drawing.Color.White;
-            this.btstop.Location = new System.Drawing.Point(149, 182);
-            this.btstop.Name = "btstop";
-            this.btstop.Size = new System.Drawing.Size(98, 32);
-            this.btstop.TabIndex = 2;
-            this.btstop.Text = "توقف";
-            this.btstop.UseVisualStyleBackColor = false;
-            this.btstop.Click += new System.EventHandler(this.Btstop_Click);
+            btstop.BackColor = Color.FromArgb(255, 128, 128);
+            btstop.Enabled = false;
+            btstop.Font = new Font("Tahoma", 10F);
+            btstop.ForeColor = Color.White;
+            btstop.Location = new Point(149, 182);
+            btstop.Name = "btstop";
+            btstop.Size = new Size(98, 32);
+            btstop.TabIndex = 2;
+            btstop.Text = "توقف";
+            btstop.UseVisualStyleBackColor = false;
+            btstop.Click += BtnStop_Click;
             // 
             // btstart
             // 
-            this.btstart.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btstart.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btstart.ForeColor = System.Drawing.Color.White;
-            this.btstart.Location = new System.Drawing.Point(40, 182);
-            this.btstart.Name = "btstart";
-            this.btstart.Size = new System.Drawing.Size(98, 32);
-            this.btstart.TabIndex = 2;
-            this.btstart.Text = "شروع";
-            this.btstart.UseVisualStyleBackColor = false;
-            this.btstart.Click += new System.EventHandler(this.Btstart_Click);
+            btstart.BackColor = Color.MediumSeaGreen;
+            btstart.Font = new Font("Tahoma", 10F);
+            btstart.ForeColor = Color.White;
+            btstart.Location = new Point(40, 182);
+            btstart.Name = "btstart";
+            btstart.Size = new Size(98, 32);
+            btstart.TabIndex = 2;
+            btstart.Text = "شروع";
+            btstart.UseVisualStyleBackColor = false;
+            btstart.Click += BtnStart_Click;
             // 
             // NQuality
             // 
-            this.NQuality.Location = new System.Drawing.Point(7, 80);
-            this.NQuality.Maximum = new decimal(new int[] {
+            NQuality.Location = new Point(7, 80);
+            NQuality.Maximum = new decimal(new[] {
             300,
             0,
             0,
             0});
-            this.NQuality.Name = "NQuality";
-            this.NQuality.Size = new System.Drawing.Size(46, 22);
-            this.NQuality.TabIndex = 9;
-            this.NQuality.Value = new decimal(new int[] {
+            NQuality.Name = "NQuality";
+            NQuality.Size = new Size(46, 22);
+            NQuality.TabIndex = 9;
+            NQuality.Value = new decimal(new[] {
             20,
             0,
             0,
@@ -151,69 +152,69 @@ namespace Scanner.Server
             // 
             // imgcrop
             // 
-            this.imgcrop.AutoSize = true;
-            this.imgcrop.BackColor = System.Drawing.Color.Transparent;
-            this.imgcrop.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.imgcrop.Location = new System.Drawing.Point(169, 22);
-            this.imgcrop.Name = "imgcrop";
-            this.imgcrop.Size = new System.Drawing.Size(82, 18);
-            this.imgcrop.TabIndex = 10;
-            this.imgcrop.Text = "برش عکس";
-            this.imgcrop.UseVisualStyleBackColor = false;
-            this.imgcrop.CheckedChanged += new System.EventHandler(this.Imgcrop_CheckedChanged);
+            imgcrop.AutoSize = true;
+            imgcrop.BackColor = Color.Transparent;
+            imgcrop.Font = new Font("Tahoma", 9F);
+            imgcrop.Location = new Point(169, 22);
+            imgcrop.Name = "imgcrop";
+            imgcrop.Size = new Size(82, 18);
+            imgcrop.TabIndex = 10;
+            imgcrop.Text = "برش عکس";
+            imgcrop.UseVisualStyleBackColor = false;
+            imgcrop.CheckedChanged += ImageCrop_CheckedChanged;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label3.Location = new System.Drawing.Point(59, 84);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 14);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "کیفیت تصویر";
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 9F);
+            label3.Location = new Point(59, 84);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 14);
+            label3.TabIndex = 11;
+            label3.Text = "کیفیت تصویر";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.NDPI);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.NHight);
-            this.groupBox1.Controls.Add(this.NWidth);
-            this.groupBox1.Controls.Add(this.imgcrop);
-            this.groupBox1.Controls.Add(this.NQuality);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.useUICheckBox);
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(10, 31);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 144);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "تنظیمات";
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(NDPI);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(NHight);
+            groupBox1.Controls.Add(NWidth);
+            groupBox1.Controls.Add(imgcrop);
+            groupBox1.Controls.Add(NQuality);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(useUICheckBox);
+            groupBox1.Font = new Font("Tahoma", 9F);
+            groupBox1.Location = new Point(10, 31);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(264, 144);
+            groupBox1.TabIndex = 12;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "تنظیمات";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label6.Location = new System.Drawing.Point(59, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 14);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "کیفیت اسکن";
+            label6.AutoSize = true;
+            label6.Font = new Font("Tahoma", 9F);
+            label6.Location = new Point(59, 56);
+            label6.Name = "label6";
+            label6.Size = new Size(72, 14);
+            label6.TabIndex = 17;
+            label6.Text = "کیفیت اسکن";
             // 
             // NDPI
             // 
-            this.NDPI.Location = new System.Drawing.Point(7, 52);
-            this.NDPI.Maximum = new decimal(new int[] {
+            NDPI.Location = new Point(7, 52);
+            NDPI.Maximum = new decimal(new[] {
             300,
             0,
             0,
             0});
-            this.NDPI.Name = "NDPI";
-            this.NDPI.Size = new System.Drawing.Size(46, 22);
-            this.NDPI.TabIndex = 16;
-            this.NDPI.Value = new decimal(new int[] {
+            NDPI.Name = "NDPI";
+            NDPI.Size = new Size(46, 22);
+            NDPI.TabIndex = 16;
+            NDPI.Value = new decimal(new[] {
             170,
             0,
             0,
@@ -221,35 +222,35 @@ namespace Scanner.Server
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(213, 81);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 14);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "عرض :";
+            label5.AutoSize = true;
+            label5.Location = new Point(213, 81);
+            label5.Name = "label5";
+            label5.Size = new Size(41, 14);
+            label5.TabIndex = 15;
+            label5.Text = "عرض :";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(213, 51);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 14);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "طول :";
+            label4.AutoSize = true;
+            label4.Location = new Point(213, 51);
+            label4.Name = "label4";
+            label4.Size = new Size(36, 14);
+            label4.TabIndex = 14;
+            label4.Text = "طول :";
             // 
             // NHight
             // 
-            this.NHight.Enabled = false;
-            this.NHight.Location = new System.Drawing.Point(139, 49);
-            this.NHight.Maximum = new decimal(new int[] {
+            NHight.Enabled = false;
+            NHight.Location = new Point(139, 49);
+            NHight.Maximum = new decimal(new[] {
             10000,
             0,
             0,
             0});
-            this.NHight.Name = "NHight";
-            this.NHight.Size = new System.Drawing.Size(69, 22);
-            this.NHight.TabIndex = 13;
-            this.NHight.Value = new decimal(new int[] {
+            NHight.Name = "NHight";
+            NHight.Size = new Size(69, 22);
+            NHight.TabIndex = 13;
+            NHight.Value = new decimal(new[] {
             800,
             0,
             0,
@@ -257,17 +258,17 @@ namespace Scanner.Server
             // 
             // NWidth
             // 
-            this.NWidth.Enabled = false;
-            this.NWidth.Location = new System.Drawing.Point(139, 77);
-            this.NWidth.Maximum = new decimal(new int[] {
+            NWidth.Enabled = false;
+            NWidth.Location = new Point(139, 77);
+            NWidth.Maximum = new decimal(new[] {
             10000,
             0,
             0,
             0});
-            this.NWidth.Name = "NWidth";
-            this.NWidth.Size = new System.Drawing.Size(69, 22);
-            this.NWidth.TabIndex = 12;
-            this.NWidth.Value = new decimal(new int[] {
+            NWidth.Name = "NWidth";
+            NWidth.Size = new Size(69, 22);
+            NWidth.TabIndex = 12;
+            NWidth.Value = new decimal(new[] {
             700,
             0,
             0,
@@ -275,49 +276,49 @@ namespace Scanner.Server
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(121, 251);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = ".........";
+            label1.AutoSize = true;
+            label1.Location = new Point(121, 251);
+            label1.Name = "label1";
+            label1.Size = new Size(34, 13);
+            label1.TabIndex = 0;
+            label1.Text = ".........";
             // 
             // trayIcon
             // 
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "سرویس اسکنر";
-            this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseDoubleClick);
+            trayIcon.Icon = ((Icon)(resources.GetObject("trayIcon.Icon")));
+            trayIcon.Text = "سرویس اسکنر";
+            trayIcon.Visible = true;
+            trayIcon.MouseDoubleClick += TrayIcon_MouseDoubleClick;
             // 
             // Scanner
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(284, 254);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btstart);
-            this.Controls.Add(this.btstop);
-            this.Controls.Add(this.selectSource);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "Scanner";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Scaner_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Scaner_FormClosed);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.NQuality)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NDPI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NHight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NWidth)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.GhostWhite;
+            ClientSize = new Size(284, 254);
+            Controls.Add(groupBox1);
+            Controls.Add(label2);
+            Controls.Add(btstart);
+            Controls.Add(btstop);
+            Controls.Add(selectSource);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = ((Icon)(resources.GetObject("$this.Icon")));
+            MaximizeBox = false;
+            Name = "Scanner";
+            RightToLeft = RightToLeft.Yes;
+            StartPosition = FormStartPosition.CenterScreen;
+            TopMost = true;
+            FormClosing += Scanner_FormClosing;
+            FormClosed += Scanner_FormClosed;
+            SizeChanged += Form1_SizeChanged;
+            ((ISupportInitialize)(NQuality)).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((ISupportInitialize)(NDPI)).EndInit();
+            ((ISupportInitialize)(NHight)).EndInit();
+            ((ISupportInitialize)(NWidth)).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
         public Scanner()
@@ -330,7 +331,7 @@ namespace Scanner.Server
                 {
                     if (!InvokeRequired)
                     {
-                        this.Invoke(new MethodInvoker(delegate
+                        Invoke(new MethodInvoker(delegate
                         {
                             Bitmap bitmap = new Bitmap(args.Image);
                             if (imgcrop.Checked)
@@ -338,7 +339,7 @@ namespace Scanner.Server
                             Bitmap newBitmap = new Bitmap(bitmap);
                             float fdpi = (float)NQuality.Value;
                             newBitmap.SetResolution(fdpi, fdpi);
-                            _ResultScan.Add(Convert_ImageTo_Byte(newBitmap, System.Drawing.Imaging.ImageFormat.Jpeg));
+                            _ResultScan.Add(Convert_ImageTo_Byte(newBitmap, ImageFormat.Jpeg));
                         }));
                     }
 
@@ -375,19 +376,17 @@ namespace Scanner.Server
         {
             _twain.SelectSource();
         }
-        public List<byte[]> GetBase()
+        public void GetBase()
         {
             while (!Enabled)
             {
-                continue;
             }
-            return _ResultScan;
         }
         public void _StartScan()
         {
             if (InvokeRequired)
             {
-                this.Invoke(new MethodInvoker(delegate
+                Invoke(new MethodInvoker(delegate
                 {
                     Enabled = false;
                     _settings = new ScanSettings();
@@ -396,12 +395,11 @@ namespace Scanner.Server
                     _settings.ShowProgressIndicatorUI = true;
                     _settings.UseDuplex = true;
                     _settings.Resolution =
-                        false
-                        ? ResolutionSettings.Fax : ResolutionSettings.ColourPhotocopier;
+                        ResolutionSettings.ColourPhotocopier;
                     _settings.Resolution.Dpi = (int)NDPI.Value;
                     _settings.Area = !false ? null : AreaSettings;
                     _settings.ShouldTransferAllPages = true;
-                    _settings.Rotation = new RotationSettings()
+                    _settings.Rotation = new RotationSettings
                     {
                         AutomaticRotate = false,
                         AutomaticBorderDetection = false,
@@ -410,9 +408,8 @@ namespace Scanner.Server
                     {
                         _twain.StartScanning(_settings);
                     }
-                    catch (TwainException ex)
+                    catch 
                     {
-                        //  MessageBox.Show(ex.Message);
                         Enabled = true;
                     }
                 }));
@@ -423,7 +420,7 @@ namespace Scanner.Server
         {
             _twain.SelectSource();
         }
-        private void Btstart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
             if (server.Start(ipAddress, 6565, 100))
@@ -435,13 +432,13 @@ namespace Scanner.Server
                 MessageBox.Show(this, "لطفا قبل از راه اندازی سرویس از باز بودن پورت 8085 اطمینان حاصل نمایید.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
-        private void Btstop_Click(object sender, EventArgs e)
+        private void BtnStop_Click(object sender, EventArgs e)
         {
             btstart.Enabled = true;
             btstop.Enabled = false;
             server.Stop();
         }
-        public List<byte[]> _StartListner()
+        public List<byte[]> _StartListener()
         {
             _ResultScan = new List<byte[]>();
             _StartScan();
@@ -452,21 +449,21 @@ namespace Scanner.Server
         {
             Show();
             trayIcon.Visible = false;
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
         }
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
                 trayIcon.Visible = true;
-                this.Hide();
+                Hide();
             }
         }
-        private void Scaner_FormClosed(object sender, FormClosedEventArgs e)
+        private void Scanner_FormClosed(object sender, FormClosedEventArgs e)
         {
             server.Stop();
         }
-        private void Imgcrop_CheckedChanged(object sender, EventArgs e)
+        private void ImageCrop_CheckedChanged(object sender, EventArgs e)
         {
             if (imgcrop.Checked)
             {
@@ -480,7 +477,7 @@ namespace Scanner.Server
             }
         }
 
-        private void Scaner_FormClosing(object sender, FormClosingEventArgs e)
+        private void Scanner_FormClosing(object sender, FormClosingEventArgs e)
         {
             server.Stop();
             trayIcon.Visible = false;
