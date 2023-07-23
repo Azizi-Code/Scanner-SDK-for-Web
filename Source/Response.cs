@@ -7,8 +7,8 @@ namespace Scanner.Service
     {
         public Response(bool isSuccess, string message)
         {
-            this.Message = message;
-            this.IsSuccess = isSuccess;
+            Message = message;
+            IsSuccess = isSuccess;
         }
         public Response()
         {
