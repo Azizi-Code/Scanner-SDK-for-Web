@@ -1,7 +1,7 @@
-# WebApplications Scanner SDK
+# Scanner SDK for Web
 @ Access Scanner from Web Browsers By Reliable Browser-Based Document Scanning SDK @
 
-The WebApplications Scanner SDK is a powerful tool specifically crafted for web document management applications. By simply incorporating a few lines of JavaScript code, you can effortlessly establish connections with scanner hardware through web applications. Seamlessly scan documents, edit images, and securely save them to file systems or databases on Windows with utmost convenience and efficiency.
+The Scanner SDK for Web is a powerful tool specifically crafted for web document management applications. By simply incorporating a few lines of JavaScript code, you can effortlessly establish connections with scanner hardware through web applications. Seamlessly scan documents, edit images, and securely save them to file systems or databases on Windows with utmost convenience and efficiency.
 
 ## Features
 
@@ -19,7 +19,7 @@ This project utilizes the `TwainDotNet.dll` library for connecting to scanners. 
 
 ## Usage in Angular
 
-To integrate the WebApplications Scanner SDK into an Angular application, follow these steps:
+To integrate the Scanner SDK for Web into an Angular application, follow these steps:
 
 1. Create the `ScannedServcieResponse` model by adding the following code snippet to your project:
 ```typescript
@@ -68,4 +68,4 @@ Please note that you should replace the endpoint URL (http://localhost:6565) wit
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
 ## License
-This project is licensed under the [MIT License](https://github.com/rhazizi/scanner_in_webApplications/blob/main/LICENSE).
+This project is licensed under the [MIT License](https://github.com/rhazizi/scanner-sdk-for-web/blob/main/LICENSE).
