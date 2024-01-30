@@ -69,3 +69,4 @@ Contributions to this project are welcome. If you encounter any issues or have s
 
 ## License
 This project is licensed under the [MIT License](https://github.com/rhazizi/scanner-sdk-for-web/blob/main/LICENSE).
+
